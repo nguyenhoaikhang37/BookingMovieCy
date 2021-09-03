@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import "./Footer.scss";
+var Scroll = require("react-scroll");
+var scroll = Scroll.animateScroll;
 
 const Footer = () => {
   return (
@@ -190,9 +192,13 @@ const Footer = () => {
             <div className="container footer-container">
               <a
                 onClick={() => {
-                  window.scrollTo(0, 0);
+                  scroll.scrollToTop({
+                    duration: 800,
+                    smooth: "ease",
+                  });
                 }}
                 className="footer-rocket"
+                style={{ cursor: "pointer" }}
               >
                 <i
                   className="bx bxs-rocket bx-tada bx-flip-horizontal"

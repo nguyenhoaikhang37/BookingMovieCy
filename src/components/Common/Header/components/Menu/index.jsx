@@ -1,7 +1,31 @@
 import React, { Fragment } from "react";
 import "./Menu.scss";
+import { scroller } from "react-scroll";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Menu = ({ isToggle, setIsToggle }) => {
+  const history = useHistory();
+  const location = useLocation();
+
+  const handleClickLink = async (id) => {
+    setIsToggle(false);
+    if (location.pathname === "/home") {
+      scroller.scrollTo(id, {
+        duration: 800,
+        smooth: "ease",
+      });
+    } else {
+      await history.push("/home");
+
+      setTimeout(() => {
+        scroller.scrollTo(id, {
+          duration: 800,
+          smooth: "ease",
+        });
+      }, 50);
+    }
+  };
+
   return (
     <Fragment>
       <div
@@ -21,8 +45,9 @@ const Menu = ({ isToggle, setIsToggle }) => {
           </li>
           <li className="menu-item2">
             <a
-              onClick={() => setIsToggle(false)}
-              href="#search"
+              onClick={() => {
+                handleClickLink("search");
+              }}
               className="menu-link"
             >
               <i
@@ -35,8 +60,9 @@ const Menu = ({ isToggle, setIsToggle }) => {
 
           <li className="menu-item2">
             <a
-              onClick={() => setIsToggle(false)}
-              href="#film"
+              onClick={() => {
+                handleClickLink("film");
+              }}
               className="menu-link"
             >
               <i
@@ -48,8 +74,9 @@ const Menu = ({ isToggle, setIsToggle }) => {
           </li>
           <li className="menu-item2">
             <a
-              onClick={() => setIsToggle(false)}
-              href="#theater"
+              onClick={() => {
+                handleClickLink("theater");
+              }}
               className="menu-link"
             >
               <i

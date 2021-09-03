@@ -17,21 +17,24 @@ const Header = () => {
   const handleClickLink = async (id) => {
     if (location.pathname === "/home") {
       scroller.scrollTo(id, {
-        duration: 400,
-        smooth: "easeInOutQuart",
+        duration: 800,
+        smooth: "ease",
       });
     } else {
       await history.push("/home");
-      scroller.scrollTo(id, {
-        duration: 400,
-        smooth: "easeInOutQuart",
-      });
+
+      setTimeout(() => {
+        scroller.scrollTo(id, {
+          duration: 800,
+          smooth: "ease",
+        });
+      }, 50);
     }
   };
 
   return (
     <Fragment>
-      <header className="header">
+      <header id="header" className="header">
         <div className="container">
           <div className="header-main">
             <Link to="/" className="logo">
