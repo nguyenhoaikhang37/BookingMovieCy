@@ -1,14 +1,32 @@
 import React, { Fragment, useState } from "react";
 import "./Header.scss";
 import Menu from "./components/Menu";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import { scroller } from "react-scroll";
 
 const Header = () => {
   const [isToggle, setIsToggle] = useState(false);
+  const history = useHistory();
+  const location = useLocation();
 
   const handleMenuClick = () => {
     setIsToggle(!isToggle);
     console.log(isToggle);
+  };
+
+  const handleClickLink = async (id) => {
+    if (location.pathname === "/home") {
+      scroller.scrollTo(id, {
+        duration: 400,
+        smooth: "easeInOutQuart",
+      });
+    } else {
+      await history.push("/home");
+      scroller.scrollTo(id, {
+        duration: 400,
+        smooth: "easeInOutQuart",
+      });
+    }
   };
 
   return (
@@ -26,26 +44,40 @@ const Header = () => {
             </Link>
             <ul className="menu-links">
               <li className="menu-item">
-                <a href="#search" className="menu-link">
+                <a
+                  onClick={() => {
+                    handleClickLink("search");
+                  }}
+                  className="menu-link"
+                  style={{ cursor: "pointer" }}
+                >
                   <i className="bx bx-calendar" style={{ color: "#ffffff" }} />{" "}
                   Lịch chiếu
                 </a>
               </li>
               <li className="menu-item">
                 <a
-                  href="#film"
-                  style={{ scrollMarginTop: "100px" }}
+                  onClick={() => {
+                    handleClickLink("film");
+                  }}
+                  style={{ cursor: "pointer" }}
                   className="menu-link"
                 >
                   <i className="bx bx-film" style={{ color: "#ffffff" }} /> Phim
                 </a>
               </li>
               <li className="menu-item">
-                <a href="#theater" className="menu-link">
+                <a
+                  onClick={() => {
+                    handleClickLink("theater");
+                  }}
+                  className="menu-link"
+                  style={{ cursor: "pointer" }}
+                >
                   <i
                     className="bx bx-camera-movie"
                     style={{ color: "#ffffff" }}
-                  />{" "}
+                  />
                   Cụm rạp
                 </a>
               </li>

@@ -3,11 +3,7 @@ import "./Theater.scss";
 
 const Theater = () => {
   return (
-    <section
-      style={{ scrollMarginTop: "5rem" }}
-      id="theater"
-      className="theater"
-    >
+    <section id="theater" className="theater">
       <div className="container">
         <h2 className="heading__title">Cụm rạp</h2>
         <div className="theater-main">

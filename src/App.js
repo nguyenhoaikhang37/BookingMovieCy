@@ -10,7 +10,7 @@ import Loading from "components/Common/Loading";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const history = createBrowserHistory();
+export const history = createBrowserHistory();
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);

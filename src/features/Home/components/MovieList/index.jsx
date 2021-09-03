@@ -38,7 +38,7 @@ const MovieList = () => {
   };
 
   return (
-    <section style={{ scrollMarginTop: "5rem" }} id="film" className="film">
+    <section id="film" className="film">
       <div className="container">
         <div className="film-heading">
           <h3

@@ -3,11 +3,7 @@ import "./SearchMovie.scss";
 
 const SearchMovie = () => {
   return (
-    <section
-      style={{ scrollMarginTop: "5rem" }}
-      id="search"
-      className="booking"
-    >
+    <section id="search" className="booking">
       <div className="container">
         <h2 className="heading__title">Đặt vé</h2>
         <div className="booking-main">
