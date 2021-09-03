@@ -1,0 +1,157 @@
+@import "assets/styles/colors";
+@import "assets/styles/mixins";
+
+.header {
+  padding: 2rem 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(10, 15, 34, 0.9);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 10;
+
+  &-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu-links {
+    display: flex;
+    list-style: none;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .menu-item {
+    font-family: $vn-font;
+    font-size: 1.8rem;
+    padding: 0 2rem;
+    display: flex;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #ccc 50%, #fbbd61 50%, #ec7532);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: 0.5s ease-out;
+
+    &:hover {
+      background-position: -100%;
+    }
+  }
+
+  .menu-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.menu-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-login-box {
+  position: relative;
+}
+
+.menu-login-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.menu-login-icon {
+  margin-right: 0.5rem;
+}
+
+.menu-login-drop {
+  position: absolute;
+  display: none;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  width: 13rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background: $light-color;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transform-origin: right top;
+  animation: headerNotify ease-in 0.25s;
+  color: #e74c3c;
+}
+
+.menu-login-drop::before {
+  content: "";
+  border: 10px solid;
+  border-color: transparent transparent $light-color transparent;
+  position: absolute;
+  right: 12px;
+  top: -18px;
+}
+
+.menu-login-drop::after {
+  content: "";
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: -16px;
+  background: transparent;
+}
+
+.menu-login-box:hover .menu-login-drop {
+  display: block;
+}
+
+@keyframes headerNotify {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.login-user {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.header-active {
+  background: $dark-color;
+}
+
+.logo-img {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem;
+}
+
+.user-icon {
+  font-size: 2rem;
+  margin-right: 5px;
+}
+
+.header {
+  @include maxw(769px) {
+    .menu-link {
+      padding: 12px;
+    }
+  }
+  @include maxw(797px) {
+    .menu-links {
+      display: none;
+    }
+    .menu-login {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,126 @@
+@import "assets/styles/mixins";
+
+.menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 999;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transform: translateX(-100%);
+  transition: transform 0.2s linear;
+  will-change: transform;
+  &.is-active {
+    transform: translateX(0);
+  }
+  &-list {
+    list-style: none;
+    height: 100%;
+    padding: 70px 20px 20px;
+  }
+  &-item2:not(:first-child) {
+    margin-bottom: 4rem;
+  }
+  &-item2:first-child {
+    margin-bottom: 3rem;
+  }
+  &-link {
+    padding: 15px;
+    text-transform: capitalize;
+    border-radius: 6px;
+    transition: all 0.15s linear;
+    font-size: 1.8rem;
+  }
+  &-close {
+    cursor: pointer;
+    font-size: 30px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+  &-toggle {
+    cursor: pointer;
+  }
+  &-signin {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+  }
+  &-icon {
+    margin-right: 1rem;
+  }
+  &-logout {
+    color: #e74c3c;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.hamburger-menu-links {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+}
+.hamburger-menu-links .hamburger-menu-link {
+  list-style: none;
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  left: 0;
+  transform: translateY(-50%);
+  background: linear-gradient(to bottom right, #ffc86b, #ff6750);
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+  transition: 0.9s;
+}
+.hamburger-menu-links .hamburger-menu-link:nth-of-type(1) {
+  top: 20%;
+}
+.hamburger-menu-links .hamburger-menu-link:nth-of-type(2) {
+  top: 50%;
+}
+.hamburger-menu-links .hamburger-menu-link:nth-of-type(3) {
+  top: 80%;
+}
+.hamburger-menu-links.active .hamburger-menu-link:nth-of-type(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg) rotateY(180deg);
+}
+.hamburger-menu-links.active .hamburger-menu-link:nth-of-type(2) {
+  left: -300%;
+  opacity: 0;
+}
+.hamburger-menu-links.active .hamburger-menu-link:nth-of-type(3) {
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg) rotateY(180deg);
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  animation: fadeIn linear 0.3s;
+  will-change: opacity;
+  z-index: 99;
+}
+.show {
+  display: block;
+}
+@media Screen and (max-width: 797px) {
+  .hamburger-menu-links {
+    display: block;
+  }
+  .menu {
+        width: 25rem;
+      }
+}

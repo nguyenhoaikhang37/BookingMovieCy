@@ -1,24 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import { Router, Switch, Route, Redirect } from "react-router-dom";
+import { createBrowserHistory } from "history";
+import NotFound from "components/Common/NotFound";
+import HomeLayout from "components/Layout/HomeLayout";
+import Home from "features/Home";
+import Detail from "features/Detail";
+import { Fragment } from "react";
+import Loading from "components/Common/Loading";
+import { useState } from "react";
+import { useEffect } from "react";
+
+const history = createBrowserHistory();
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Router history={history}>
+          <Switch>
+            <Redirect exact from="/" to="home" />
+
+            <HomeLayout path="/home" Component={Home} />
+            <HomeLayout path="/detail/:maPhim" Component={Detail} />
+
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
+        </Router>
+      )}
+    </Fragment>
   );
 }
 
