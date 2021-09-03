@@ -4,6 +4,7 @@ import ModalVideo from "react-modal-video";
 import { NavLink } from "react-router-dom";
 import { randomCategory } from "utils";
 import history from "../../../../App";
+
 const MovieItem = ({ movie }) => {
   const [isOpen, setOpen] = useState(false);
   //Lấy id cuối của trailer

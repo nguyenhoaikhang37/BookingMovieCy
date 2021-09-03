@@ -1,11 +1,14 @@
-Booking Movie App
+<h1 align='center'>Booking Movie App 🎥</h1>
 
-🔍 Folder structure
+#### **🏨 Folder structure**
+
+```
 src
-|**apis
-|**app
-|**assets
-|**components
-|**constants
-|**features
-|\_\_utils
+|__apis
+|__app
+|__assets
+|__components
+|__constants
+|__features
+|__utils
+```
