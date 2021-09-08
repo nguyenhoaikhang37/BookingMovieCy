@@ -27,10 +27,23 @@ export const fetchDetailMovie = createAsyncThunk(
   }
 );
 
+export const fetchTheaterSystem = createAsyncThunk(
+  "home/fetchTheaterSystem",
+  async () => {
+    try {
+      const response = theaterApi.layThongTinLichChieuHeThongRap();
+      return response;
+    } catch (error) {
+      console.log("Failed to fetch theater system", error);
+    }
+  }
+);
+
 const initialState = {
   loading: false,
   movieList: [],
   movieDetail: undefined,
+  theaterSystem: [],
 };
 
 const homeSlice = createSlice({
@@ -55,6 +68,11 @@ const homeSlice = createSlice({
       state.loading = false;
       state.movieDetail = action.payload.content;
     },
+
+    //Lay thong tin cum rap theo he thong
+    [fetchTheaterSystem.fulfilled]: (state, action) => {
+      state.theaterSystem = action.payload.content;
+    },
   },
 });
 
@@ -64,6 +82,8 @@ export const homeActions = homeSlice.actions;
 export const selectHomeLoading = (state) => state.home.loading;
 export const selectHomeMovieList = (state) => state.home.movieList;
 export const selectHomeMovieDetail = (state) => state.home.movieDetail;
+export const selectHomeTheaterList = (state) => state.home.theaterList;
+export const selectHomeTheaterSystem = (state) => state.home.theaterSystem;
 //REDUCER
 const homeReducer = homeSlice.reducer;
 export default homeReducer;

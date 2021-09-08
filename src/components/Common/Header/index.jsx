@@ -86,13 +86,13 @@ const Header = () => {
               </li>
             </ul>
             <div className="menu-login-box">
-              <a href="#" className="menu-login">
+              <Link to="/login" className="menu-login">
                 <img
                   src="https://tix.vn/app/assets/img/avatar.png"
                   className="login-user"
                 />
                 Đăng nhập
-              </a>
+              </Link>
               <div className="menu-login-drop">
                 <div className="menu-login-text">
                   <i

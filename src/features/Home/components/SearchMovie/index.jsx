@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./SearchMovie.scss";
 
 const SearchMovie = () => {
@@ -58,4 +58,4 @@ const SearchMovie = () => {
   );
 };
 
-export default SearchMovie;
+export default memo(SearchMovie);

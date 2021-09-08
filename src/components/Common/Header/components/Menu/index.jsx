@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import "./Menu.scss";
 import { scroller } from "react-scroll";
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 const Menu = ({ isToggle, setIsToggle }) => {
   const history = useHistory();
@@ -35,13 +35,13 @@ const Menu = ({ isToggle, setIsToggle }) => {
       <div className={`${isToggle && "is-active"} menu`}>
         <ul className="menu-list">
           <li className="menu-item2">
-            <a href="" className="menu-link menu-signin">
+            <Link to="/login" className="menu-link menu-signin">
               <img
                 src="https://tix.vn/app/assets/img/avatar.png"
                 className="login-user"
               />
               Đăng nhập
-            </a>
+            </Link>
           </li>
           <li className="menu-item2">
             <a

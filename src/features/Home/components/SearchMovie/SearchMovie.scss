@@ -65,7 +65,6 @@ select {
   @include maxw(770px) {
     .booking-btn {
       padding: 18px 10px;
-      margin-top: 1rem;
     }
   }
   @include maxw(767px) {

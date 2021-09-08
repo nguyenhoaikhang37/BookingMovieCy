@@ -1,8 +1,8 @@
 import axiosClient from "./axiosClient";
 
 const theaterApi = {
-  layThongTinHeThongRap() {
-    const url = "/QuanLyRap/LayThongTinHeThongRap";
+  layThongTinLichChieuHeThongRap() {
+    const url = `/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP09`;
     return axiosClient.get(url);
   },
 

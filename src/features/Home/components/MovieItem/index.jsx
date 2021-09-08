@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, memo, useState } from "react";
 import ModalVideo from "react-modal-video";
 import { NavLink } from "react-router-dom";
 import { randomCategory } from "utils";
@@ -49,4 +49,4 @@ const MovieItem = ({ movie }) => {
   );
 };
 
-export default MovieItem;
+export default memo(MovieItem);

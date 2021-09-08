@@ -9,6 +9,8 @@ import { Fragment } from "react";
 import Loading from "components/Common/Loading";
 import { useState } from "react";
 import { useEffect } from "react";
+import TicketRoom from "features/TicketRoom";
+import Auth from "features/Auth";
 
 export const history = createBrowserHistory();
 
@@ -32,6 +34,11 @@ function App() {
 
             <HomeLayout path="/home" Component={Home} />
             <HomeLayout path="/detail/:maPhim" Component={Detail} />
+            <HomeLayout path="/ticketroom/:id" Component={TicketRoom} />
+
+            <Route path="/login">
+              <Auth />
+            </Route>
 
             <Route path="*">
               <NotFound />

@@ -1,0 +1,50 @@
+.icon_theater_links_mobile {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  overflow-y: hidden;
+  overflow-x: auto;
+  transition: all 0.5s;
+  border-bottom: 1px solid #273252;
+}
+
+.icon_theater_item_mobile {
+  width: unset;
+  flex-shrink: 0;
+}
+
+.theater-column-mobile {
+  padding: 2rem;
+  height: 50rem;
+  overflow: hidden auto;
+}
+
+.theater-column-mobile2 {
+  padding-left: 2rem;
+  height: 32rem;
+  overflow: hidden auto;
+}
+
+.theater_address_box_mobile {
+  display: flex;
+  -moz-column-gap: 2rem;
+  column-gap: 2rem;
+}
+
+.theater_address_item_mobile {
+  flex-direction: column;
+  row-gap: 2rem;
+  transition: all 0.5s ease;
+}
+
+.theater-column-mobile-children {
+  height: 0;
+  transition: all 0.5s ease;
+}
+
+.theater-column-mobile-children.show {
+  height: 32rem;
+}

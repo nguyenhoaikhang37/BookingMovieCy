@@ -16,29 +16,29 @@
 
   &-column {
     padding: 2rem;
+    height: 60rem;
+    overflow: hidden auto;
   }
 
   &-column:not(:last-child) {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     border-right: 1px solid $border-color;
   }
 
   &-column:first-child {
-    align-items:center;
-  }
-
-  .active {
-    opacity: 1;
+    align-items: center;
   }
 }
-
+.theater_address_item.active {
+  opacity: 1;
+}
+.icon_theater_item.active img {
+  opacity: 1;
+}
 .iconTheater {
   border-radius: 50%;
   height: 5rem;
   width: 5rem;
-  opacity: 0.7;
+  opacity: 0.5;
   transition: all 0.2s ease;
   cursor: pointer;
 
@@ -69,7 +69,6 @@
   padding-bottom: 2rem;
   cursor: pointer;
   opacity: 0.5;
-
   &:hover {
     opacity: 1;
   }
@@ -83,18 +82,25 @@
   padding-top: 2rem;
 }
 
-.theater_address_img img {
+.theater_address_img {
   width: 5.5rem;
   height: 5.5rem;
-  border-radius: 1rem;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+  }
+}
+
+.theater-address-content {
+  flex: 1;
 }
 
 .address-name {
   font-size: 1.4rem;
-
-  span {
-    color: #8bc541;
-  }
 }
 
 .address-address {
@@ -148,6 +154,7 @@
 .film-name-heading {
   font-size: 1.5rem;
   text-transform: capitalize;
+  line-height: 1.2;
 
   span {
     padding: 0 0.6rem;
@@ -158,27 +165,30 @@
 }
 
 .film-time {
-  font-size: 1.3rem;
   color: #949494;
   margin: 1.2rem 0;
+  font-size: 1.3rem;
 }
 
 .digital-text {
   margin-bottom: 1.5rem;
-  margin-left: 1rem;
-  margin-top: 0.8rem;
+  margin-left: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .theater_film_time {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
 
   .film-time-item {
+    font-size: 1.3rem;
+    width: 25%;
     display: flex;
-    align-items: center;
     justify-content: center;
     cursor: pointer;
-    margin: 1rem;
+    text-align: center;
     padding: 1rem 2rem;
     border-radius: 2rem;
     box-shadow: 0px 0px 5px 0px rgba(123, 120, 248, 0.5);
@@ -187,24 +197,69 @@
     &:hover {
       background: #7b78f880;
     }
-  }
-}
-.theater {
-  @include maxw(1090px) {
-    .theater_film_time {
-      grid-template-columns: repeat(3, 1fr);
+
+    &:hover {
+      color: #fb4226 !important;
     }
   }
-  @include maxw(887px) {
-    .theater_film_time {
-      grid-template-columns: repeat(2, 1fr);
+}
+
+.theater-column::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: rgb(232, 227, 227);
+}
+
+.theater-column::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+.theater-column::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
+.theater {
+  @include maxw(1041px) {
+    .film-time-item {
+      width: 27%;
+    }
+  }
+  @include maxw(1024px) {
+    .film-time-item {
+      width: 30%;
+    }
+  }
+  @include maxw(950px) {
+    .film-time-item {
+      width: 40%;
+    }
+  }
+  @include maxw(830px) {
+    .film-time-item {
+      font-size: 1rem;
+    }
+  }
+  @include maxw(800px) {
+    .film-time-item {
+      font-size: 1.3rem;
+      width: 100%;
     }
   }
   @include maxw(769px) {
-    .theater_film_time {
-      grid-template-columns: repeat(2, 1fr);
+    .film-name-heading {
+      font-size: 1.3rem;
+    }
+    .film-time {
+      font-size: 1.1rem;
+    }
+    .film-time-item {
+      padding: 1rem;
+      font-size: 0.8rem;
+      width: 40%;
     }
   }
+
   @include maxw(767px) {
     .theater-main {
       grid-template-columns: 1fr;
@@ -213,10 +268,6 @@
     .theater-column:not(:last-child) {
       border-right: none;
       display: flex;
-    }
-
-    .theater_film_time {
-      grid-template-columns: repeat(3, 1fr);
     }
 
     .icon_theater_links {
@@ -230,8 +281,5 @@
       border-bottom: none;
       padding: 1rem;
     }
-
-    // .icon_theater_item:not(:first-child) {
-    // }
   }
 }

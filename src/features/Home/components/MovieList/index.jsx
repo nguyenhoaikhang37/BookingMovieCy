@@ -3,7 +3,7 @@ import {
   selectHomeLoading,
   selectHomeMovieList,
 } from "features/Home/homeSlice";
-import React from "react";
+import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import "./MovieList.scss";
 
@@ -96,4 +96,4 @@ const MovieList = () => {
   );
 };
 
-export default MovieList;
+export default memo(MovieList);
