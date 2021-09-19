@@ -8,6 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import "./Detail.scss";
 import { Link } from "react-router-dom";
+import {
+  fetchTicketList,
+  selectTicketList,
+} from "features/TicketRoom/ticketSlice";
 const Detail = ({ match }) => {
   const dispatch = useDispatch();
   const [overView, setOverView] = useState("active");
@@ -20,7 +24,11 @@ const Detail = ({ match }) => {
 
   useEffect(() => {
     dispatch(fetchDetailMovie(maPhim));
+    window.scrollTo(0, 0);
+    // fetch API layThongTinLichChieuPhim
   }, []);
+  console.log(movieDetail);
+
   const overviewClick = () => {
     setOverView("active");
     setReview("");
@@ -45,11 +53,11 @@ const Detail = ({ match }) => {
       className="container"
       style={{ minHeight: "90vh", marginTop: "15rem" }}
     >
-      <div class="grid-container">
-        <div class="grid-item1">
+      <div className="grid-container">
+        <div className="grid-item1">
           <img src={movieDetail?.hinhAnh} />
         </div>
-        <div class="grid-item2">
+        <div className="grid-item2">
           <h1>{movieDetail?.tenPhim.toUpperCase()}</h1>
           <div className="rate">
             <div className="point">

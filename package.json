@@ -6,11 +6,7 @@
     "@hookform/resolvers": "^2.8.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
-<<<<<<< HEAD
     "@mui/material": "^5.0.0",
-=======
-    "@material-ui/lab": "^4.0.0-alpha.60",
->>>>>>> choose_theater
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
