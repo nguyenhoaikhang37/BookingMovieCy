@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import axios from "axios";
 import "./TicketRoom.scss";
-import numeral from "numeral";
+// import numeral from "numeral";
 const TicketRoom = ({ match }) => {
   const maLichChieu = match.params.id;
   const [thongTinPhim, setThongTinPhim] = useState([]);
@@ -116,7 +116,7 @@ const TicketRoom = ({ match }) => {
                       }}
                     >
                       {item.tenGhe} Giá : {console.log(typeof item.giaVe)}
-                      {numeral(Number(item.giaVe)).format("0,0")} Đ
+                      {/* {numeral(Number(item.giaVe)).format("0,0")} Đ */}
                     </button>
                   </span>
                 );
@@ -128,7 +128,7 @@ const TicketRoom = ({ match }) => {
 
           <p>Thông tin phone cuar user</p>
           <h1 style={{ textAlign: "left" }} className="total-cash">
-            Tổng tiền : {numeral(Number(tongTien)).format("0,0")} Đ
+            {/* Tổng tiền : {numeral(Number(tongTien)).format("0,0")} Đ */}
           </h1>
           <button type="button" className="dat-ve">
             Đặt vé
