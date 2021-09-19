@@ -14,6 +14,7 @@ import useViewport from "hooks/useViewport";
 const Home = () => {
   const dispatch = useDispatch();
   const { width } = useViewport();
+
   const breakpoint = 767;
   useEffect(() => {
     dispatch(fetchMovieList());

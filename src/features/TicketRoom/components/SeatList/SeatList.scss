@@ -1,0 +1,159 @@
+.ticket-seat-main {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.seat-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  column-gap: 15px;
+}
+
+.seat-top-right {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.seat-content {
+  perspective: 1000px;
+}
+
+.screen {
+  background-color: #fff;
+  height: 70px;
+  width: 90%;
+  margin: 15px auto;
+  transform: rotateX(-45deg);
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.7);
+}
+
+.seat-list {
+  text-align: center;
+  position: relative;
+}
+
+.seat-icon {
+  font-size: 40px;
+}
+
+.seat-item {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  color: #fff;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.seat-item-vip {
+  color: #f24939;
+}
+
+.seat-item-vip p {
+  color: #fff;
+}
+
+.seat-item-active {
+  color: #2ecc71;
+}
+
+.seat-item-active p {
+  color: #fff;
+}
+.seat-item-sold {
+  color: rgb(153, 197, 255) !important;
+  cursor: not-allowed;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+.seat-item-sold p {
+  color: #fff;
+}
+
+.seat-number {
+  position: absolute;
+  color: #1a193e;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+}
+
+.seat-icon-x {
+  font-size: 20px;
+  color: #fff;
+}
+
+.seat-item-note {
+  cursor: text;
+  text-align: center;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.seat-item-note .seat-icon {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.seat-item-note p {
+  font-size: 13px;
+  margin: 5px;
+}
+
+.seat-note {
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.seat-label {
+  position: absolute;
+  font-weight: 500;
+  cursor: default;
+  left: 100px;
+  // padding: 13px 0;
+  top: 50%;
+  left: -100%;
+  transform: translate(-50%, -50%);
+
+  &:hover {
+    opacity: 1 !important;
+  }
+}
+.seat-box {
+  overflow: auto hidden;
+}
+.seat-box-content {
+  min-width: 600px;
+}
+.time-seat {
+  font-size: 13px;
+  font-weight: 300;
+  color: #9b9b9b;
+}
+.seat_film_item {
+  padding: 0;
+}
+
+.countdown-class {
+  background: linear-gradient(#fbbd61, #ec7532);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.seat_address_item {
+  border-bottom: none !important;
+  align-items: center;
+  cursor: default;
+}

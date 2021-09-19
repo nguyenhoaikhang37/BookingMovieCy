@@ -2,10 +2,12 @@ import React, { Fragment } from "react";
 import "./Menu.scss";
 import { scroller } from "react-scroll";
 import { Link, useHistory, useLocation } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import { selectAuthUser } from "features/Auth/authSlice";
 const Menu = ({ isToggle, setIsToggle }) => {
   const history = useHistory();
   const location = useLocation();
+  const user = useSelector(selectAuthUser);
 
   const handleClickLink = async (id) => {
     setIsToggle(false);
@@ -26,6 +28,11 @@ const Menu = ({ isToggle, setIsToggle }) => {
     }
   };
 
+  const handleLogOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
   return (
     <Fragment>
       <div
@@ -34,15 +41,30 @@ const Menu = ({ isToggle, setIsToggle }) => {
       ></div>
       <div className={`${isToggle && "is-active"} menu`}>
         <ul className="menu-list">
-          <li className="menu-item2">
-            <Link to="/login" className="menu-link menu-signin">
-              <img
-                src="https://tix.vn/app/assets/img/avatar.png"
-                className="login-user"
-              />
-              Đăng nhập
-            </Link>
-          </li>
+          {!user ? (
+            <li className="menu-item2">
+              <Link to="/login" className="menu-link menu-signin">
+                <img
+                  src="https://tix.vn/app/assets/img/avatar.png"
+                  className="login-user"
+                />
+                Đăng nhập
+              </Link>
+            </li>
+          ) : (
+            <li className="menu-item2">
+              <Link to="/profile" className="menu-link menu-signin">
+                <img
+                  src="https://picsum.photos/200/300?random=1"
+                  className="login-user"
+                />
+                <div className="menu-login-info">
+                  <div>{user.hoTen}</div>
+                  <div className="menu-login-email">{user.email}</div>
+                </div>
+              </Link>
+            </li>
+          )}
           <li className="menu-item2">
             <a
               onClick={() => {
@@ -86,15 +108,14 @@ const Menu = ({ isToggle, setIsToggle }) => {
               Cụm rạp
             </a>
           </li>
-          <li className="menu-item2">
-            <a href="" className="menu-link menu-logout">
-              <i
-                className="bx bx-log-out-circle menu-icon"
-                style={{ color: "#e74c3c" }}
-              ></i>
-              Đăng xuất
-            </a>
-          </li>
+          {user && (
+            <li className="menu-item2">
+              <span onClick={handleLogOut} className="menu-link menu-logout">
+                <i className="bx bx-log-out menu-login-icon " />
+                Log out
+              </span>
+            </li>
+          )}
         </ul>
       </div>
     </Fragment>

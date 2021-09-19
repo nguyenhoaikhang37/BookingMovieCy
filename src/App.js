@@ -11,12 +11,19 @@ import { useState } from "react";
 import { useEffect } from "react";
 import TicketRoom from "features/TicketRoom";
 import Auth from "features/Auth";
+import { useDispatch } from "react-redux";
+import { getUserToken } from "features/Auth/authSlice";
+import Profile from "features/Profile";
 
 export const history = createBrowserHistory();
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getUserToken());
+  }, []);
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
@@ -34,11 +41,16 @@ function App() {
 
             <HomeLayout path="/home" Component={Home} />
             <HomeLayout path="/detail/:maPhim" Component={Detail} />
-            <HomeLayout path="/ticketroom/:id" Component={TicketRoom} />
+
+            <Route path="/ticketroom/:id">
+              <TicketRoom />
+            </Route>
 
             <Route path="/login">
               <Auth />
             </Route>
+
+            <HomeLayout path="/profile" Component={Profile} />
 
             <Route path="*">
               <NotFound />

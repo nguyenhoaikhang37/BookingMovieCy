@@ -1,0 +1,104 @@
+@import "assets/styles/colors";
+
+.ticket {
+  &-main {
+    display: flex;
+  }
+
+  &-left {
+    flex: 75%;
+    background: rgb(34, 33, 74);
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  &-right {
+    flex: 25%;
+    background: rgb(31, 30, 68);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    position: relative;
+  }
+
+  &-step {
+    background: rgb(26, 25, 62);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    position: relative;
+    padding: 3rem 2rem;
+  }
+}
+
+.MuiStepLabel-active {
+  color: #65ae2f !important;
+}
+
+.MuiStepLabel-completed {
+  color: #9d9b9b !important;
+}
+
+.MuiSvgIcon-root {
+  width: 2em !important;
+  height: 2em !important;
+}
+
+.ticket-step-user {
+  flex-shrink: 0;
+}
+
+.login-step-img {
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+}
+
+.menu-step-drop {
+  top: 50px;
+  left: -210%;
+}
+
+.btn-buy {
+  right: 0px;
+  width: 25%;
+  border: none;
+  bottom: 0px;
+  cursor: pointer;
+  height: 60px;
+  position: fixed;
+  background-color: rgb(175, 175, 175);
+  background-image: none;
+  cursor: not-allowed;
+}
+.btn-buy.active {
+  background: #44c020;
+  cursor: pointer;
+}
+.btn-buy-text {
+  color: #e9e9e9;
+  margin: auto;
+  font-size: 25px;
+}
+.MuiTypography-h6 {
+  font-size: 18px !important;
+  text-align: center !important;
+  color: #fb4226 !important;
+}
+
+.MuiDialogTitle-root {
+  padding: 8px 0 0 !important;
+}
+
+.MuiTypography-colorTextSecondary {
+  font-size: 14px !important;
+  color: #000 !important;
+}
+
+.pay-reload {
+  color: #fb4226;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
