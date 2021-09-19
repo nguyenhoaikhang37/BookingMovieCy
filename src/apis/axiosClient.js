@@ -1,20 +1,21 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { BASE_URL, TOKEN_CYBERSOFT } from 'constants/config';
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { BASE_URL, TOKEN_CYBERSOFT } from "constants/config";
+import { GET_USER } from "constants/localStorage";
 
 const axiosClient = axios.create({
   baseURL: BASE_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
     TokenCybersoft: TOKEN_CYBERSOFT,
   },
 });
 
 axiosClient.interceptors.request.use(
   function (config) {
-    const user = localStorage.getItem('user');
-    if (user) {
+    const user = JSON.parse(localStorage.getItem(GET_USER));
+    if (user && typeof user !== "string") {
       // nếu có đăng nhập thì thực hiện
-      const { accessToken } = JSON.parse(user);
+      const { accessToken } = user;
       config.headers.common.Authorization = `Bearer ${accessToken}`;
     }
     return config;

@@ -33,7 +33,6 @@ const MovieList = () => {
   };
 
   const loadMoreMovie = () => {
-    console.log("more button");
     setLoadMore((prev) => prev + 5);
   };
 

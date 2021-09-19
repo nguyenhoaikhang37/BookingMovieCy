@@ -1,17 +1,19 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import "./Header.scss";
 import Menu from "./components/Menu";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { scroller } from "react-scroll";
+import { selectAuthUser } from "features/Auth/authSlice";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isToggle, setIsToggle] = useState(false);
   const history = useHistory();
   const location = useLocation();
+  const user = useSelector(selectAuthUser);
 
   const handleMenuClick = () => {
     setIsToggle(!isToggle);
-    console.log(isToggle);
   };
 
   const handleClickLink = async (id) => {
@@ -30,6 +32,11 @@ const Header = () => {
         });
       }, 50);
     }
+  };
+
+  const handleLogOut = () => {
+    localStorage.clear();
+    window.location.reload();
   };
 
   return (
@@ -86,22 +93,47 @@ const Header = () => {
               </li>
             </ul>
             <div className="menu-login-box">
-              <Link to="/login" className="menu-login">
-                <img
-                  src="https://tix.vn/app/assets/img/avatar.png"
-                  className="login-user"
-                />
-                Đăng nhập
-              </Link>
-              <div className="menu-login-drop">
-                <div className="menu-login-text">
-                  <i
-                    className="bx bx-log-out-circle menu-login-icon"
-                    style={{ color: "#e74c3c" }}
-                  />
-                  Đăng xuất
+              {!user ? (
+                <div>
+                  <Link to="/login" className="menu-login">
+                    <img
+                      src="https://tix.vn/app/assets/img/avatar.png"
+                      className="login-user"
+                    />
+                    Đăng nhập
+                  </Link>
                 </div>
-              </div>
+              ) : (
+                <div>
+                  <div className="menu-login">
+                    <img
+                      src={`https://i.pravatar.cc/300?u=${user.hoTen}`}
+                      className="login-user"
+                    />
+                    {user.hoTen}
+                  </div>
+                  <div className="menu-login-drop">
+                    <div className="menu-login-name">
+                      <img
+                        src={`https://i.pravatar.cc/300?u=${user.hoTen}`}
+                        className="login-user"
+                      />
+                      <div className="menu-login-info">
+                        <div>{user.hoTen}</div>
+                        <div className="menu-login-email">{user.email}</div>
+                      </div>
+                    </div>
+                    <Link to="/profile" className="menu-login-text">
+                      <i className="bx bx-user menu-login-icon " />
+                      Profile
+                    </Link>
+                    <div onClick={handleLogOut} className="menu-login-text ">
+                      <i className="bx bx-log-out menu-login-icon " />
+                      Log out
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             <ul
               className={`${isToggle && "active"} hamburger-menu-links`}
