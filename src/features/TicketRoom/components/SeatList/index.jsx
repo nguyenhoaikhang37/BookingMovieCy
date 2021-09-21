@@ -21,7 +21,7 @@ const SeatList = () => {
   });
 
   return (
-    <Fragment>
+    <div className="seat-list-main">
       <div className="seat-top">
         <div className="theater_address_item active seat_address_item">
           <div className="theater_address_img">
@@ -85,7 +85,7 @@ const SeatList = () => {
           </div>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

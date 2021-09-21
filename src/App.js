@@ -24,6 +24,7 @@ function App() {
   useEffect(() => {
     dispatch(getUserToken());
   }, []);
+
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);

@@ -10,6 +10,7 @@ import { fetchMovieList, fetchTheaterList } from "./homeSlice";
 import TheaterPC from "./components/TheaterPC";
 import TheaterMobile from "./components/TheaterMobile";
 import useViewport from "hooks/useViewport";
+import { ticketActions } from "features/TicketRoom/ticketSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Home = () => {
   const breakpoint = 767;
   useEffect(() => {
     dispatch(fetchMovieList());
+    dispatch(ticketActions.removeTicketStore());
   }, []);
 
   return (

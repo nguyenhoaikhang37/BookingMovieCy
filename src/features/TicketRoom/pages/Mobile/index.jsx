@@ -1,42 +1,106 @@
-import Loading from "components/Common/Loading";
-import { GET_USER } from "constants/localStorage";
 import SeatList from "features/TicketRoom/components/SeatList";
 import SeatPay from "features/TicketRoom/components/SeatPay";
 import {
-  fetchTicketList,
-  selectTicketLoading,
+  selectTicketStore,
+  ticketActions,
 } from "features/TicketRoom/ticketSlice";
-import React, { useEffect, useState } from "react";
-import { Fragment } from "react";
-import { memo } from "react";
+import React, { Fragment, memo, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useParams } from "react-router";
 import useStyles from "./style";
 import "./TicketRoomMB.scss";
+import Swal from "sweetalert2";
+import ticketApi from "apis/ticketApi";
+import { useHistory, useParams } from "react-router";
 
 const Mobile = () => {
-  const [isDisableBtnRight, setDisableBtnRight] = useState(false);
+  const classes = useStyles();
+  const params = useParams();
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const ticketStore = useSelector(selectTicketStore);
   const [activeStep, setActiveStep] = useState(0);
+  const [isPay, setPay] = useState("");
 
-  const classes = useStyles({ isDisableBtnRight });
   const steps = ["CHỌN GHẾ", "THANH TOÁN"];
 
   const getContentBtn = () => {
     switch (activeStep) {
       case 0:
-        return { left: "A1", right: "TIẾP TỤC" };
+        return {
+          left: ticketStore.map((ticket) => `${ticket.label} `),
+          right: "TIẾP TỤC",
+        };
       case 1:
         return { left: "QUAY LẠI", right: "ĐẶT VÉ" };
-      case 2:
-        return { left: "MUA THÊM VÉ PHIM NÀY", right: "QUAY VỀ TRANG CHỦ" };
       default:
         return {};
     }
   };
 
+  const handleBackButton = () => {
+    setActiveStep(0);
+  };
+
+  const handleNextButton = () => {
+    setActiveStep(1);
+    if (activeStep === 1) {
+      Swal.fire({
+        title: "Thông tin đặt vé sẽ được gửi qua email",
+        text: "Hãy kiểm tra thông tin trước khi xác nhận!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Đồng ý",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            ticketApi.datVe({
+              maLichChieu: params.id,
+              danhSachVe: ticketStore.map((ve) => {
+                return { maGhe: ve.maGhe, giaVe: ve.giaVe };
+              }),
+            });
+
+            dispatch(ticketActions.removeTicketStore());
+
+            await Swal.fire("Success!", "Đặt vé thành công!", "success");
+
+            history.push("/home");
+          } catch (error) {
+            console.log("Failed to dat ve", error);
+          }
+        }
+      });
+    }
+  };
+
+  const handleCloseClick = () => {
+    Swal.fire({
+      title: "Thông báo!",
+      text: "Bạn chắc chắn muốn thoát khỏi trang đặt vé?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Đồng ý",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          history.push("/home");
+          window.location.reload();
+        } catch (error) {
+          console.log("Failed to close", error);
+        }
+      }
+    });
+  };
+
   return (
     <div className="seatlist-mobile">
       <section className={classes.top}>
+        <i onClick={handleCloseClick} className="fas fa-times icon-close"></i>
         {steps.map((label, i) => (
           <Fragment key={label}>
             {activeStep === i && (
@@ -44,6 +108,7 @@ const Mobile = () => {
             )}
           </Fragment>
         ))}
+        <div></div>
       </section>
 
       {/* empty */}
@@ -58,19 +123,40 @@ const Mobile = () => {
           className="seatpay-mobile"
           style={{ display: activeStep === 1 ? "block" : "none" }}
         >
-          <SeatPay />
+          <SeatPay setPay={setPay} />
         </div>
         <div style={{ height: 70 }}></div>
       </div>
 
       {/* bottom */}
       <section className={classes.bottom}>
-        <button className={`${classes.btnLeft} ${classes.btnBottom}`}>
+        <button
+          onClick={handleBackButton}
+          className={`${classes.btnLeft} ${classes.btnBottom} btn-Left`}
+        >
           {getContentBtn().left}
         </button>
-        <button className={`${classes.btnRight} ${classes.btnBottom}`}>
-          {getContentBtn().right}
-        </button>
+        {activeStep === 0 ? (
+          <button
+            disabled={ticketStore.length === 0 ? true : false}
+            onClick={handleNextButton}
+            className={`${classes.btnRight} ${classes.btnBottom} ${
+              ticketStore.length !== 0 && classes.btnRightActive
+            }`}
+          >
+            {getContentBtn().right}
+          </button>
+        ) : (
+          <button
+            disabled={ticketStore.length !== 0 && isPay ? false : true}
+            onClick={handleNextButton}
+            className={`${classes.btnRight} ${classes.btnBottom} ${
+              ticketStore.length !== 0 && isPay && classes.btnRightActive
+            }`}
+          >
+            {getContentBtn().right}
+          </button>
+        )}
       </section>
     </div>
   );

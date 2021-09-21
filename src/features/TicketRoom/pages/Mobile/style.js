@@ -8,8 +8,9 @@ const useStyles = makeStyles({
     zIndex: 1,
     height: 60,
     width: "100%",
+    padding: "0 15px",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
     boxShadow: "0 0 15px rgb(255 255 255 / 30%)",
     backgroundColor: "#1a193e",
@@ -62,10 +63,13 @@ const useStyles = makeStyles({
     backgroundColor: "#fff",
     padding: 10,
   },
-  btnRight: (props) => ({
+  btnRight: {
     color: "#e9e9e9",
-    backgroundColor: props.isDisableBtnRight ? "#afafaf" : "#44c020",
+    backgroundColor: "#afafaf",
     fontSize: 15,
-  }),
+  },
+  btnRightActive: {
+    backgroundColor: "#44c020",
+  },
 });
 export default useStyles;

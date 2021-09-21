@@ -1,61 +1,26 @@
-import { CircularProgress } from "@material-ui/core";
-import ticketApi from "apis/ticketApi";
 import {
   selectTicketList,
   selectTicketStore,
 } from "features/TicketRoom/ticketSlice";
-import React, { Fragment, useState } from "react";
-import { memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router";
-import Swal from "sweetalert2";
-import { ticketActions } from "../../ticketSlice";
+import React, { Fragment, memo } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import "./SeatPay.scss";
 import useStyles from "./style";
 
-const SeatPay = () => {
-  const { thongTinPhim, danhSachGhe } = useSelector(selectTicketList);
+const SeatPay = ({ setPay }) => {
+  const { thongTinPhim } = useSelector(selectTicketList);
   const ticketStore = useSelector(selectTicketStore);
   const classes = useStyles();
-  const history = useHistory();
-  const [isPay, setPay] = useState("");
-  const dsVe = useSelector(selectTicketStore);
-  const params = useParams();
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (ticketStore.length === 0) {
+      setPay("");
+    }
+  }, [ticketStore]);
 
   const onChangeRadio = (e) => {
     setPay(e.target.value);
-  };
-
-  const handlePayClick = () => {
-    Swal.fire({
-      title: "Thông tin đặt vé sẽ được gửi qua email",
-      text: "Hãy kiểm tra thông tin trước khi xác nhận!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Đồng ý",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          ticketApi.datVe({
-            maLichChieu: params.id,
-            danhSachVe: dsVe.map((ve) => {
-              return { maGhe: ve.maGhe, giaVe: ve.giaVe };
-            }),
-          });
-
-          dispatch(ticketActions.removeTicketStore());
-
-          await Swal.fire("Success!", "Đặt vé thành công!", "success");
-
-          history.push("/home");
-        } catch (error) {
-          console.log("Failed to dat ve", error);
-        }
-      }
-    });
   };
 
   return (
@@ -188,13 +153,6 @@ const SeatPay = () => {
             </p>
           </div>
         </div>
-        <button
-          onClick={handlePayClick}
-          disabled={isPay === "" ? true : false}
-          className={`btn-buy ${isPay && "active"}`}
-        >
-          <p className="btn-buy-text">Thanh toán</p>
-        </button>
       </Fragment>
     </div>
   );
