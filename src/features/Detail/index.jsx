@@ -25,25 +25,6 @@ const Detail = ({ match }) => {
     window.scrollTo(0, 0);
     // fetch API layThongTinLichChieuPhim
   }, []);
-<<<<<<< HEAD
-  console.log(movieDetail);
-
-  const overviewClick = () => {
-    setOverView("active");
-    setReview("");
-    setShowtimes("");
-  };
-  const reviewClick = () => {
-    setReview("active");
-    setOverView("");
-    setShowtimes("");
-  };
-  const showtimeClick = () => {
-    setShowtimes("active");
-    setReview("");
-    setOverView("");
-  };
-=======
   useEffect(() => {
     if (movieDetail?.heThongRapChieu.length === 6) {
       setHeight6("info-body-showtimes-height6");
@@ -53,7 +34,6 @@ const Detail = ({ match }) => {
     setCumRap(movieDetail?.heThongRapChieu.slice(0, 1)[0].cumRapChieu);
   }, [movieDetail]);
   //tét
->>>>>>> detail-movie
   const fetchCumRap = (cumRap) => {
     setCumRap(cumRap);
   };
