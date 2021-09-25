@@ -27,7 +27,7 @@ const Detail = ({ match }) => {
     }
     setCumRap(movieDetail?.heThongRapChieu.slice(0, 1)[0].cumRapChieu);
   }, [movieDetail]);
-
+  //tét
   const fetchCumRap = (cumRap) => {
     setCumRap(cumRap);
   };
