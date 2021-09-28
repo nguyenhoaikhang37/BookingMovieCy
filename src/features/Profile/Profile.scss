@@ -1,0 +1,23 @@
+.activeProfile {
+  @apply text-red-400 border-red-400 border-b-2;
+}
+
+.th,
+.td {
+  min-width: 100px;
+}
+
+.scrollbar-profile::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: rgb(232, 227, 227);
+}
+
+.scrollbar-profile::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+.scrollbar-profile::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
