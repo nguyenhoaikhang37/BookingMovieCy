@@ -1,7 +1,11 @@
 import movieApi from "apis/movieApi";
 import theaterApi from "apis/theaterApi";
 
-const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+const {
+  createSlice,
+  createAsyncThunk,
+  createSelector,
+} = require("@reduxjs/toolkit");
 
 export const fetchMovieList = createAsyncThunk(
   "home/fetchMovieList",
@@ -81,6 +85,15 @@ export const homeActions = homeSlice.actions;
 //SELECTORS
 export const selectHomeLoading = (state) => state.home.loading;
 export const selectHomeMovieList = (state) => state.home.movieList;
+//Movie Options
+export const selectHomeMovieOptions = createSelector(
+  selectHomeMovieList,
+  (movieList) =>
+    movieList.map((movie) => ({
+      label: movie.tenPhim,
+      value: movie.maPhim,
+    }))
+);
 export const selectHomeMovieDetail = (state) => state.home.movieDetail;
 export const selectHomeTheaterList = (state) => state.home.theaterList;
 export const selectHomeTheaterSystem = (state) => state.home.theaterSystem;

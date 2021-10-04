@@ -40,7 +40,7 @@ main {
   transition: 0.8s ease-in-out;
 }
 
-form {
+.form {
   max-width: 260px;
   width: 100%;
   margin: 0 auto;
@@ -53,7 +53,7 @@ form {
   transition: opacity 0.02s 0.4s;
 }
 
-form.sign-up-form {
+.form.sign-up-form {
   opacity: 0;
   pointer-events: none;
 }

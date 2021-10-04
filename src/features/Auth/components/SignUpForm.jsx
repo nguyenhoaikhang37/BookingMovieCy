@@ -67,7 +67,10 @@ const SignUpForm = ({ setIsSignIn, isSignIn, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleSignUpSubmit)} className="sign-up-form">
+    <form
+      onSubmit={handleSubmit(handleSignUpSubmit)}
+      className="sign-up-form form"
+    >
       <Link to="/" className="logo">
         <img
           src="https://image.flaticon.com/icons/png/512/1779/1779914.png"

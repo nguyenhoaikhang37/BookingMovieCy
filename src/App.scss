@@ -104,6 +104,10 @@ input {
   width: 120%;
 }
 
+.btnTrailer.btn-disable:hover::after {
+  width: 0%;
+}
+
 .btnTrailer i,
 .btnTrailer span {
   position: relative;

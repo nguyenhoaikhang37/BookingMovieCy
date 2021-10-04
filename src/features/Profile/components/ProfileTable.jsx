@@ -2,7 +2,6 @@ import React from "react";
 import dayjs from "dayjs";
 
 const ProfileTable = ({ user }) => {
-  console.log(user);
   return (
     <>
       <div className="mt-10 overflow-x-scroll px-10 scrollbar-profile">

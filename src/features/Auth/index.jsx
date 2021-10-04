@@ -18,7 +18,7 @@ const Auth = () => {
     const { content } = await userApi.dangNhap(formValues);
     dispatch(authActions.setUser(content));
     localStorage.setItem(GET_USER, JSON.stringify(content));
-    history.push("/home");
+    history.goBack();
   };
 
   const handleSignUpSubmit = async (formValues) => {

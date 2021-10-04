@@ -45,7 +45,12 @@ select {
     display: none;
   }
 }
-
+.btn-disable {
+  background: #9ca3af;
+}
+.btn-disable:hover:enabled {
+  background: #9ca3af;
+}
 .booking {
   @include maxw(1025px) {
     .booking-btn {
@@ -73,6 +78,7 @@ select {
       border-bottom: none;
       border-top: none;
       padding: 1rem 0;
+      grid-gap: 3rem 0;
     }
 
     .heading__title {
@@ -85,6 +91,7 @@ select {
 
     .booking-btn {
       display: block;
+      width: 100%;
       text-align: center;
       margin-left: 0;
       margin-top: 1rem;
