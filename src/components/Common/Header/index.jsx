@@ -5,6 +5,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { scroller } from "react-scroll";
 import { selectAuthUser } from "features/Auth/authSlice";
 import { useSelector } from "react-redux";
+import Images from "constants/images";
 
 const Header = () => {
   const [isToggle, setIsToggle] = useState(false);
@@ -96,10 +97,7 @@ const Header = () => {
               {!user ? (
                 <div>
                   <Link to="/login" className="menu-login">
-                    <img
-                      src="https://tix.vn/app/assets/img/avatar.png"
-                      className="login-user"
-                    />
+                    <img src={Images.UN_AVARTA} className="login-user" />
                     Đăng nhập
                   </Link>
                 </div>

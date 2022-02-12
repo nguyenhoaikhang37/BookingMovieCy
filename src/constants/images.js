@@ -8,6 +8,7 @@ import cns from "../assets/images/cinema/cns-logo.jpeg";
 import galaxy from "../assets/images/cinema/galaxy-logo.jpeg";
 import lottle from "../assets/images/cinema/lottle-logo.jpeg";
 import megags from "../assets/images/cinema/megags-logo.jpeg";
+import unAvarta from "../assets/images/un-avarta.jpeg";
 
 const Images = {
   BANNER1_BG: banner1,
@@ -20,6 +21,7 @@ const Images = {
   GALAXY_IMG: galaxy,
   LOTTLE_IMG: lottle,
   MEGAGS_IMG: megags,
+  UN_AVARTA: unAvarta,
 };
 
 export default Images;
